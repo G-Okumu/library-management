@@ -12,7 +12,8 @@ class User():
     def password(self)-> str:
         return self._password
     
-    ## Move this to appropriate class
+    # Move this to appropriate class
+    # Keep it simple for the students also
     @password.setter
     def password(self, value: str):
         if len(value) < 6:
