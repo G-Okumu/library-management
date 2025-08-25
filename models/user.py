@@ -44,4 +44,19 @@ class User():
     def username(self, value: str):
         unique_username = f"{value.lower()}_{value[0].lower()}"
         self._username = unique_username
+        
+    # Validating role to be only of type student, admin and librarian
+    # add teacher later
+    
+    @property
+    def role(self) -> str:
+        return self._role
+    
+    @role.setter
+    def role(self, value: str):
+        role = value.lower()
+        if role not in ['student', 'admin', 'librarian']:
+            raise ValueError(f"Role must be one of student, admin and librarian")
+        
+        self._role = role
     
