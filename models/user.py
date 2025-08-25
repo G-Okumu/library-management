@@ -33,4 +33,15 @@ class User():
         
         # hash before storing
         self._password = hashlib.sha256(value.encode()).hexdigest()
+        
+        
+    @property
+    def username(self) -> str:
+        return self._username
+    
+    # just a way of setting username on its own unique way
+    @username.setter
+    def username(self, value: str):
+        unique_username = f"{value.lower()}_{value[0].lower()}"
+        self._username = unique_username
     
