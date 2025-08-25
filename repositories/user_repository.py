@@ -27,7 +27,7 @@ class UserRepository():
         try:
            row = CURSOR.execute(
                 """
-                    select id, username, password from users where username=?
+                    select id, username, password, role from users where username=?
                 """,
                 (username,)
             ).fetchone() # Fetch only a single matching detail, anyway only single details will be returned since usernames is unique
