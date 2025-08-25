@@ -1,47 +1,41 @@
-from books.library import Library
-from members.librarian import Librarian
-from members.student import Student
-from books.book import Book
+from repositories.user_repository import UserRepository
 
+from models.user import User
 
 def main():
-    # creating  instances
-    sekotiek_library = Library("Sekotiek")
+    print("Hello user, welcome to Library management System")
+    print("I guess you are an admin, feel free to add users now")
     
-    book1 = Book("Mathematics B8", "6726763KL")
-    book2 = Book("Chemistry", "8932892CM")
-
-    librarian = Librarian("Ayub Karanja", 89993)
-    
-    student1 = Student("Newton", "LMS-67263", 7)
-    student2 = Student("Natasha", "LMS-8976K", 9)
-    
-    
-    # librarian adding books
-    librarian.add_book(sekotiek_library, book1)
-    librarian.add_book(sekotiek_library, book2)
-
-    
-    ## display books in library
-    for ab in sekotiek_library.list_books():
-        print(ab.title, ab.isbn)
+    while True:
+        print("\n. 1 Add user")
+        print("2. Add Librarian")
+        print("3. Exit")
         
-    ## students borrowing and returning
-    student1.borrow_book(book1)
-    student1.borrow_book(book2)
+        choice = input("choose:  ")
+        
+        if choice == "1":
+            print("                                                                      ")
+            print("Good choice, seems like you are the admin, now give out the following:")
+            
+            
+            username = input("Enter a username  ")
+            password = input("Create password for this user ")
+            role = input("Add role for this person ")
+            
+            try:
+                # new_user = User(username=username, password=password, role=role)
+                UserRepository.add_user(User(username, password, role))
+            except Exception as e:
+                print(f"Exception {e} occured")
+            
+        
+        elif choice == "2":
+            pass
+        else:
+            break
+            
     
-    student1.return_book(book1)
     
-    print("======================")
-    print("======================")
-    
-    # display all student borrowed books
-    print("Books Borrowed by:", student1.name)
-    for student_book in student1.print_all_books_borrowed():
-        print({"book_name": student_book.title, "isbn": student_book.isbn})
-       
-    
-    
-
+        
 if __name__ == "__main__":
-    main()
+    main()    
