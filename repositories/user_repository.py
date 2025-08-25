@@ -5,7 +5,7 @@ import sqlite3
 class UserRepository():
     
     # Adding users
-    def add_user(user: User) -> User:
+    def create_user(user: User) -> User:
         try:
             CURSOR.execute(
                 """
@@ -14,10 +14,7 @@ class UserRepository():
                 (user.username, user.password, user.role)
             )
             
-            CONN.commit()
-            print("User Created and Saved successfully")
-            return user
-        
+            CONN.commit()        
         except sqlite3.Error as error:
             print(f"Error {error} occured")
 

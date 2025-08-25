@@ -1,5 +1,4 @@
-from repositories.user_repository import UserRepository
-
+from services.user_service import UserService
 from models.user import User
 
 def main():
@@ -7,7 +6,7 @@ def main():
     print("I guess you are an admin, feel free to add users now")
     
     while True:
-        print("\n. 1 Add user")
+        print("\n1. Add user")
         print("2. Add Librarian")
         print("3. Exit")
         
@@ -17,14 +16,12 @@ def main():
             print("                                                                      ")
             print("Good choice, seems like you are the admin, now give out the following:")
             
-            
-            username = input("Enter a username  ")
-            password = input("Create password for this user ")
-            role = input("Add role for this person ")
+            username = input("Enter a username: ")
+            password = input("Create password for this user: ")
+            role = input("Add role for this person: ")
             
             try:
-                # new_user = User(username=username, password=password, role=role)
-                UserRepository.add_user(User(username, password, role))
+                UserService.add_user(User(username, password, role))
             except Exception as e:
                 print(f"Exception {e} occured")
             
