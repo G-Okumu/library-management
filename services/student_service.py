@@ -10,3 +10,4 @@ class StudentService:
         
         student = Student(name, user_id) # This user_id not saved in the DB?? I dont know why, maybe I check it later within the constructor
         StudentRepository.save(student)
+        

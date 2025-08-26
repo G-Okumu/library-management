@@ -5,6 +5,7 @@ from services.user_service import UserService
 from services.library_service import LibraryService
 from services.librarian_service import LibrarianService
 from services.student_service import StudentService
+from services.book_service import BookService
 
 def main():
     auth_service = AuthenticationService()
@@ -64,6 +65,37 @@ def main():
                 StudentService.create_student(name)
             else:
                 break
+        if current_user[3] == 'librarian':
+            print("                                            ")
+            print("What do you want to achieve today?")
+            
+            print("\n1. Record a book")
+            print("2. Approve a book borrow request")
+            print("3. Approve a book return request")
+            print("4. Exit")
+            print("                     ")
+            
+            choice = input("")
+            if choice == "1":
+                title = input("Enter book title: ")
+                
+                print("Choose library ID from the following list: \n")
+                libraries = LibraryService.list_libraries()
+                for lib in libraries:
+                    print(f"ID: {lib[0]}, Name: {lib[1]}")
+            
+                library_id = int(input("\nEnter library ID: "))
+                
+                BookService.create_book(title, library_id)
+                
+            elif choice == "2":
+                pass
+                
+            elif choice == "3":
+                pass
+            else:
+                break
+                    
         
 if __name__ == "__main__":
     main()    
