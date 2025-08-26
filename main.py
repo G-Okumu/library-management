@@ -1,8 +1,10 @@
+from models.user import User
+
 from services.auth_service import AuthenticationService 
 from services.user_service import UserService
 from services.library_service import LibraryService
 from services.librarian_service import LibrarianService
-from models.user import User
+from services.student_service import StudentService
 
 def main():
     auth_service = AuthenticationService()
@@ -56,6 +58,10 @@ def main():
                 user = User(username, password, role)
                 
                 UserService.add_user(user)
+            elif choice == "4":
+                name = input("Enter Student's name: ")
+                
+                StudentService.create_student(name)
             else:
                 break
         
