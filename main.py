@@ -95,6 +95,37 @@ def main():
                 pass
             else:
                 break
+            
+        if current_user[3] == 'student':
+            print("                                            ")
+            print("What do you want to achieve today?")
+            
+            print("\n1. Borrow a book")
+            print("2. Return a book")
+            print("3. Logout")
+            print("                     ")
+            
+            choice = input("")
+            if choice == "1":
+                print("Books available to borrow: \n")
+                books = LibraryService.list_books()
+                for book in books:
+                    print(f"ID: {book[0]}, Title: {book[1]}")
+                
+                book_id = int(input("\nEnter the ID of the book you want to borrow: "))
+                
+                StudentService.borrow_book(current_user[0], book_id)
+                
+            elif choice == "2":
+                print("Below are the Books you have borrowed: \n")
+                books = StudentService.list_borrowed_books(current_user[0])
+                for book in books:
+                    print(f"ID: {book[0]}, Title: {book[1]}")
+                
+                book_id = int(input("\nEnter the ID of the book you want to return: "))
+                StudentService.return_book(current_user[0], book_id)
+            else:
+                break
                     
         
 if __name__ == "__main__":

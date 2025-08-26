@@ -7,4 +7,7 @@ class LibraryService():
         
     def list_libraries():
         return LibraryRepository.get_all_libraries()
+    
+    def list_books():
+        return LibraryRepository.list_books()
         
