@@ -14,7 +14,9 @@ class UserRepository():
                 (user.username, user.password, user.role)
             )
             
-            CONN.commit()        
+            CONN.commit()
+            user.id = CURSOR.lastrowid
+            return user.id
         except sqlite3.Error as error:
             print(f"Error {error} occured")
 
